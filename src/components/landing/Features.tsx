@@ -1,5 +1,4 @@
 import { Tv, Users, BarChart3, Globe, Star, List } from "lucide-react"
-import FeatureCard from "../FeatureCard"
 import AIStrip from "./AIStrip"
 
 type Feature = {
@@ -54,6 +53,26 @@ const features: Feature[] = [
             description:  "Build and share public lists — 'Best sci-fi of the decade.'"
         }
     ];
+
+type FeatureCardProps = {
+    icon: React.ReactNode
+    iconBg: string
+    title: string
+    description: string
+}
+
+const FeatureCard = ({ icon, iconBg, title, description }: FeatureCardProps) => {
+
+    return (
+        <div className="border border-raised bg-deep rounded-xl p-4">
+            <div className={`rounded-lg ${iconBg} w-8 h-8 flex items-center justify-center mb-3`}>
+                {icon}
+            </div>
+            <p className="text-sm font-semibold text-primary mb-1">{title}</p>
+            <p className="text-xs text-muted leading-relaxed">{description}</p>
+        </div>
+    )
+}
 
 const Features = () => {
     return (
