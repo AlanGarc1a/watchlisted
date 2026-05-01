@@ -37,7 +37,7 @@ const TestimonialCard = ({ text, bgColor, textColor, name, handle }: Testimonial
 const Testimonials = () => {
     
     return (
-        <div className='px-8 py-10 border-b border-raised'>
+        <div className='px-8 py-10 md:px-8 md:py-10 border-b border-raised'>
             <div className='text-center mb-8'>
                 <p className='text-muted tracking-widest uppercase text-xs'>What people are saying</p>
                 <h3 className='font-bold text-xl text-primary'>People actually use this</h3>
