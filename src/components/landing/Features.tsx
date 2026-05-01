@@ -79,7 +79,7 @@ const Features = () => {
         <div>
             <div className="text-center my-8">
                 <p className="uppercase text-muted text-xs tracking-widest mb-2">Features</p>
-                <h2 className="text-xl font-bold text-primary">Everything Letterboxd isn&apos;t</h2>
+                <h2 className="text-lg md:text-xl font-bold text-primary">Everything Letterboxd isn&apos;t</h2>
             </div>
             {/* features grid */}
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 max-w-4xl mx-auto">

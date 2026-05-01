@@ -9,23 +9,23 @@ const Hero = () => {
                     <div className="flex justify-center mb-4">
                         <span className="rounded-full border border-violet/30 bg-violet/15 px-3 py-1 text-violet text-sm font-medium">Now with AI recommendations</span>
                     </div>
-                    <h1 className="text-3xl font-semibold text-center mb-4">
+                    <h1 className="text-2xl md:text-3xl lg-text-4xl font-semibold text-center mb-4">
                         Your TV and movie universe,{" "}
                         <span className="block text-brand">finally organized</span>
                     </h1>
-                    <p className="max-w-md mx-auto text-center text-muted mb-4">
+                    <p className="text-sm md:text-base max-w-md mx-auto text-center text-muted mb-4">
                         Track what you&apos;ve watched, discover what&apos;s next, and see what your friends are into — all in one place.
                     </p>
-                    <div className='flex justify-center my-4'>
+                    <div className="flex flex-col sm:flex-row justify-center gap-3 my-4">
                         <Link 
                             href="#" 
-                            className="inline-block rounded-md bg-brand py-2 px-4 text-primary mr-4"
+                            className="inline-block rounded-md bg-brand py-2 px-4 text-sm md:text-base text-primary mr-4"
                         >
                             Start tracking free
                         </Link>
                         <Link 
                             href="#" 
-                            className="inline-block border rounded-md py-2 px-4 text-primary"
+                            className="inline-block border rounded-md py-2 px-4 text-sm md:text-base text-primary"
                         >
                             See how it works
                         </Link>
