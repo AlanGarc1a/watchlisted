@@ -42,7 +42,7 @@ const Testimonials = () => {
                 <p className='text-muted tracking-widest uppercase text-xs'>What people are saying</p>
                 <h3 className='font-bold text-xl text-primary'>People actually use this</h3>
             </div>
-            <div className='grid grid-cols-3 gap-4 mt-6 max-w-4xl mx-auto'>
+            <div className="grid grid-cols-1 md:grid-cols-3 gap-4 max-w-4xl mx-auto">
                 {testimonials.map(testimonial => (
                     <TestimonialCard key={testimonial.id} {...testimonial} />
                 ))}

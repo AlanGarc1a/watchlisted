@@ -82,7 +82,7 @@ const Features = () => {
                 <h2 className="text-xl font-bold text-primary">Everything Letterboxd isn&apos;t</h2>
             </div>
             {/* features grid */}
-            <div className="grid grid-cols-3 gap-4 max-w-4xl mx-auto">
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 max-w-4xl mx-auto">
                 {features.map(feature => (
                     <FeatureCard key={feature.id} {...feature} />
                 ))}
