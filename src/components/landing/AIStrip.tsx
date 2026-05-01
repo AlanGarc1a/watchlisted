@@ -2,7 +2,7 @@
 const AIStrip = () => {
     return (
         <div className='border border-raised bg-deep rounded-xl p-4 mt-8'>
-            <div className='flex justify-between px-8'>
+            <div className="flex flex-col lg:flex-row justify-between gap-8">
                 <div className='space-y-3'>
                     <p className='uppercase text-muted text-sm font-semibold tracking-widest'>powered by claude ai</p>
                     <h3 className='text-primary text-lg font-bold'>An AI that actually knows your taste</h3>
