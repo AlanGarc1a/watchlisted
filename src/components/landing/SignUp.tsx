@@ -1,4 +1,5 @@
 import { Mail } from "lucide-react";
+import Link from "next/link";
 
 const SignUp = () => {
   return (
@@ -28,10 +29,13 @@ const SignUp = () => {
           Continue with Google
         </button>
         <p className="text-xs text-muted py-2">or</p>
-        <button className="flex items-center justify-center gap-2 bg-raised border border-raised py-2 px-8 rounded-lg text-primary text-sm w-full max-w-xs">
+        <Link
+          href="/auth/register"
+          className="flex items-center justify-center gap-2 bg-raised border border-raised py-2 px-8 rounded-lg text-primary text-sm w-full max-w-xs"
+        >
           <Mail size={16} />
           Sign up with Email
-        </button>
+        </Link>
       </div>
     </div>
   );
