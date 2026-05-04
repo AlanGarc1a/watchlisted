@@ -1,16 +1,15 @@
-"use client"
-import { useState } from "react"
-import { Menu, X } from "lucide-react"
-import Link from "next/link"
-import NavLinks from "./navlinks"
+"use client";
+import { useState } from "react";
+import { Menu, X } from "lucide-react";
+import Link from "next/link";
+import NavLinks from "./navlinks";
 
 const NavBar = () => {
-  const [isOpen, setIsOpen] = useState(false)
+  const [isOpen, setIsOpen] = useState(false);
 
   return (
     <nav className="border-b border-raised bg-deep">
       <div className="flex justify-between items-center px-6 h-14">
-
         {/* Logo */}
         <Link href="/" className="font-bold text-lg">
           Watch<span className="text-brand">listed</span>
@@ -29,7 +28,6 @@ const NavBar = () => {
         >
           {isOpen ? <X size={20} /> : <Menu size={20} />}
         </button>
-
       </div>
 
       {/* Mobile dropdown — only renders when isOpen is true */}
@@ -39,7 +37,7 @@ const NavBar = () => {
         </div>
       )}
     </nav>
-  )
-}
+  );
+};
 
-export default NavBar
+export default NavBar;

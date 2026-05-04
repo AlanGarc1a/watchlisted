@@ -5,15 +5,15 @@ import Footer from "../layout/footer";
 import SignUp from "./SignUp";
 
 const LandingPage = () => {
-    return (
-        <>
-            <Hero />
-            <Features />  
-            <Testimonials />
-            <SignUp />
-            <Footer />  
-        </>
-    )
-}
+  return (
+    <>
+      <Hero />
+      <Features />
+      <Testimonials />
+      <SignUp />
+      <Footer />
+    </>
+  );
+};
 
 export default LandingPage;
