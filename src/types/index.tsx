@@ -8,3 +8,11 @@ export type Movie = {
   director: string;
   tags: string[] | undefined;
 };
+
+export type Activity = {
+  id: number;
+  title: string;
+  rated: number | null;
+  tag: "Rated" | "Finished" | "Added" | "Dropped";
+  date: string;
+};
