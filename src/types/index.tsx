@@ -5,4 +5,6 @@ export type Movie = {
   genre: string;
   duration: number | null;
   rating: number | null;
+  director: string;
+  tags: string[] | undefined;
 };
