@@ -1,5 +1,4 @@
-import { Movie } from "@/types";
-
+import { Movie, Activity } from "@/types";
 export const mockMovies: Movie[] = [
   {
     id: 1,
@@ -40,5 +39,24 @@ export const mockMovies: Movie[] = [
     duration: 106,
     rating: 7.9,
     tags: ["Romance", "Drama"],
+  },
+];
+
+export const mockActivities: Activity[] = [
+  { id: 1, title: "Oppenheimer", rated: 9, tag: "Rated", date: "2 hours ago" },
+  { id: 2, title: "Shogun", rated: null, tag: "Finished", date: "Yesterday" },
+  {
+    id: 3,
+    title: "Dune: Part Two",
+    rated: null,
+    tag: "Added",
+    date: "3 days ago",
+  },
+  {
+    id: 4,
+    title: "Rings of Power",
+    rated: null,
+    tag: "Dropped",
+    date: "1 week ago",
   },
 ];
