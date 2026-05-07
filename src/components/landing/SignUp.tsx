@@ -1,4 +1,6 @@
+"use client";
 import { Mail } from "lucide-react";
+import { signIn } from "next-auth/react";
 import Link from "next/link";
 
 const SignUp = () => {
@@ -7,7 +9,11 @@ const SignUp = () => {
       <h2 className="text-primary text-2xl">Ready to get organized?</h2>
       <p className="text-muted text-sm">Free forever. No credit card needed.</p>
       <div>
-        <button className="flex items-center justify-center gap-2 bg-raised border border-raised py-2 px-8 rounded-lg text-primary text-sm w-full max-w-xs">
+        <button
+          type="button"
+          className="flex items-center justify-center gap-2 bg-raised border border-raised py-2 px-8 rounded-lg text-primary text-sm w-full max-w-xs cursor-pointer"
+          onClick={() => signIn("gogle", { callbackUrl: "/discover" })}
+        >
           <svg width="16" height="16" viewBox="0 0 24 24">
             <path
               d="M22.56 12.25c0-.78-.07-1.53-.2-2.25H12v4.26h5.92c-.26 1.37-1.04 2.53-2.21 3.31v2.77h3.57c2.08-1.92 3.28-4.74 3.28-8.09z"

@@ -4,10 +4,19 @@ import ProfileHeader from "@/components/profile/ProfileHeader";
 import ProfileStats from "@/components/profile/ProfileStats";
 import WatchlistPreview from "@/components/profile/WatchlistPreview";
 import { mockActivities } from "@/lib/mockData";
+import { auth } from "@/lib/auth";
 
-const ProfilePage = () => {
+const ProfilePage = async () => {
+  const session = await auth();
+
+  if (!session) return null;
+
   return (
     <>
+      <div>
+        <p>Welcome {session.user.name}</p>
+        <p>Your ID: {session.user.id}</p>
+      </div>
       <h1 className="text-xl font-semibold text-primary mb-4">My profile</h1>
       <ProfileHeader
         name="John Doe"
