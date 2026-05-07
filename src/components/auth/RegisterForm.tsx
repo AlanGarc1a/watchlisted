@@ -1,6 +1,8 @@
+"use client";
 import Link from "next/link";
 import TextField from "../molecules/TextField";
 import GoogleIcon from "../ui/icons/GoogleIcon";
+import { signIn } from "next-auth/react";
 
 const RegisterForm = () => {
   return (
@@ -15,7 +17,10 @@ const RegisterForm = () => {
           </p>
         </div>
         <div>
-          <button className="flex items-center justify-center gap-2 w-full py-2 border border-raised rounded-lg mb-4 bg-muted/15">
+          <button
+            className="flex items-center justify-center gap-2 w-full py-2 border border-raised rounded-lg mb-4 bg-muted/15"
+            onClick={() => signIn("google", { callbackUrl: "/discover" })}
+          >
             <GoogleIcon />
             Continue with Google
           </button>
