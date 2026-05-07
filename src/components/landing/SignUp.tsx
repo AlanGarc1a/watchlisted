@@ -12,7 +12,7 @@ const SignUp = () => {
         <button
           type="button"
           className="flex items-center justify-center gap-2 bg-raised border border-raised py-2 px-8 rounded-lg text-primary text-sm w-full max-w-xs cursor-pointer"
-          onClick={() => signIn("gogle", { callbackUrl: "/discover" })}
+          onClick={() => signIn("google", { callbackUrl: "/discover" })}
         >
           <svg width="16" height="16" viewBox="0 0 24 24">
             <path
