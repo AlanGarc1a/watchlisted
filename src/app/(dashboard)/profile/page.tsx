@@ -16,7 +16,6 @@ const ProfilePage = async () => {
       <h1 className="text-xl font-semibold text-primary mb-4">My Profile</h1>
       <ProfileHeader
         name={session.user.name ?? "Anonymous"}
-        handle={session.user.email ?? ""}
         joinDate="Jan 2024"
         following={48}
         followers={112}

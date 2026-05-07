@@ -2,7 +2,6 @@ import ProfileCard from "../shared/ProfileCard";
 
 type ProfileHeaderProps = {
   name: string | null;
-  handle: string;
   joinDate: string;
   following: number;
   followers: number;
@@ -10,7 +9,6 @@ type ProfileHeaderProps = {
 
 const ProfileHeader = ({
   name,
-  handle,
   joinDate,
   following,
   followers,
@@ -22,9 +20,7 @@ const ProfileHeader = ({
           <ProfileCard name={name} />
           <div className="flex-1">
             <p className="font-bold text-lg">{name ?? "Anonymous"}</p>
-            <p className="text-sm text-muted">
-              @{handle} · {joinDate}
-            </p>
+            <p className="text-sm text-muted">{joinDate}</p>
           </div>
           <div className="flex gap-4 mt-2">
             <div className="flex flex-col items-center">
