@@ -12,6 +12,7 @@ type NavLink = {
 
 type NavLinksProps = {
   mobile?: boolean;
+  onLinkClick?: () => void;
 };
 
 const landingLinks: NavLink[] = [
@@ -28,7 +29,7 @@ const dashboardLinks: NavLink[] = [
   { id: 5, href: "/profile", name: "My Profile" },
 ];
 
-const NavLinks = ({ mobile = false }: NavLinksProps) => {
+const NavLinks = ({ mobile = false, onLinkClick }: NavLinksProps) => {
   const { data: session, status } = useSession();
   const pathname = usePathname();
   const links = status === "authenticated" ? dashboardLinks : landingLinks;
@@ -40,6 +41,7 @@ const NavLinks = ({ mobile = false }: NavLinksProps) => {
             <Link
               key={link.id}
               href={link.href}
+              onClick={onLinkClick}
               className={`text-muted hover:text-primary transition-colors text-sm ${mobile ? "py-2 border-b border-raised" : ""}`}
             >
               {link.name}
