@@ -1,7 +1,7 @@
 import ProfileCard from "../shared/ProfileCard";
 
 type ProfileHeaderProps = {
-  name: string;
+  name: string | null;
   handle: string;
   joinDate: string;
   following: number;
@@ -19,9 +19,9 @@ const ProfileHeader = ({
     <div className="bg-deep border border-raised rounded-lg p-4 mb-4">
       <div className="space-y-2">
         <div className="flex items-center gap-4">
-          <ProfileCard name="John Doe" />
+          <ProfileCard name={name} />
           <div className="flex-1">
-            <p className="font-bold text-lg">{name}</p>
+            <p className="font-bold text-lg">{name ?? "Anonymous"}</p>
             <p className="text-sm text-muted">
               @{handle} · {joinDate}
             </p>
