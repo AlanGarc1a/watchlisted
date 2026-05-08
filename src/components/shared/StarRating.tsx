@@ -1,8 +1,12 @@
 "use client";
 import { useState } from "react";
 
-const StarRating = () => {
-  const [rating, setRating] = useState(0);
+type StarRatingProps = {
+  rating?: number;
+  onChange?: (rating: number) => void;
+};
+
+const StarRating = ({ rating = 0, onChange }: StarRatingProps) => {
   const [hover, setHover] = useState(0);
 
   return (
@@ -18,7 +22,7 @@ const StarRating = () => {
             }`}
             onMouseEnter={() => setHover(value)}
             onMouseLeave={() => setHover(0)}
-            onClick={() => setRating(value)}
+            onClick={() => onChange?.(value)}
           >
             ★
           </button>

@@ -87,3 +87,9 @@ export type Activity = {
   tag: "Rated" | "Finished" | "Added" | "Dropped";
   date: string;
 };
+
+export type WatchlistStatus =
+  | "WANT_TO_WATCH"
+  | "WATCHING"
+  | "WATCHED"
+  | "DROPPED";

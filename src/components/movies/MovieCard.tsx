@@ -1,4 +1,6 @@
-import { getImageUrl, getTitle } from "@/lib/tmdb";
+"use client";
+import { useWatchlist } from "@/hooks/useWatchlist";
+import { getImageUrl, getTitle, getYear } from "@/lib/tmdb";
 import { TMDBMovie } from "@/types";
 import { Film } from "lucide-react";
 import Image from "next/image";
@@ -10,12 +12,9 @@ type MovieCardProps = {
 
 const MovieCard = ({ movie }: MovieCardProps) => {
   const type = movie.media_type === "tv" ? "tv" : "movie";
+  const { inWatchlist, isLoading, addToWatchlist } = useWatchlist(movie.id);
   return (
-    <Link
-      href={`
-      /media/${type}/${movie.id}
-    `}
-    >
+    <Link href={`/media/${type}/${movie.id}`}>
       <div
         key={movie.id}
         className="border border-raised rounded-xl cursor-pointer overflow-hidden hover:border-violet/50 transition-colors"
@@ -40,18 +39,28 @@ const MovieCard = ({ movie }: MovieCardProps) => {
             {movie.vote_average ? movie.vote_average.toFixed(1) : "N/A"}
           </div>
         </div>
-        <div className="p-2">
-          <div className="mb-2">
-            <p className="font-semibold">{movie.title}</p>
-            <p className="text-xs text-muted">
-              {movie.release_date?.split("-")[0] ??
-                movie.first_air_date?.slice(0, 4) ??
-                "unknown"}{" "}
-              · {movie.title ?? movie.name ?? "Unknown"}{" "}
-            </p>
-          </div>
-          <button className="w-full text-center border border-raised rounded-lg py-2 text-sm hover:bg-raised cursor-pointer">
-            + Watchlist
+        <div className="p-3">
+          <p className="font-semibold text-sm text-primary truncate">
+            {getTitle(movie)}
+          </p>
+          <p className="text-xs text-muted mb-2">
+            {getYear(movie)} · {type === "tv" ? "TV" : "Movie"}
+          </p>
+          <button
+            disabled={isLoading}
+            onClick={(e) => {
+              e.preventDefault();
+              e.stopPropagation();
+              addToWatchlist(movie);
+            }}
+            className={`w-full text-center border rounded-lg py-1.5 text-xs transition-colors cursor-pointer
+            ${
+              inWatchlist
+                ? "border-teal/30 bg-teal/15 text-teal"
+                : "border-raised text-muted hover:bg-raised"
+            }`}
+          >
+            {isLoading ? "..." : inWatchlist ? "✓ Saved" : "+ Watchlist"}
           </button>
         </div>
       </div>
