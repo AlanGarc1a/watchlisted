@@ -1,12 +1,32 @@
 import { Film } from "lucide-react";
-import { Movie } from "@/types";
+import { TMDBMovieDetail, TMDBTVDetail } from "@/types";
 import Link from "next/link";
+import Image from "next/image";
+import { getImageUrl } from "@/lib/tmdb";
+
+type MediaDetail = TMDBMovieDetail | TMDBTVDetail;
 
 type MovieHeroProps = {
-  movie: Movie;
+  media: MediaDetail;
+  type: "movie" | "tv";
+  director: string;
 };
 
-const MovieHero = ({ movie }: MovieHeroProps) => {
+const MovieHero = async ({ media, type, director }: MovieHeroProps) => {
+  const title =
+    type === "movie"
+      ? (media as TMDBMovieDetail).title
+      : (media as TMDBTVDetail).name;
+
+  const releaseYear =
+    type === "movie"
+      ? (media as TMDBMovieDetail).release_date?.slice(0, 4)
+      : (media as TMDBTVDetail).first_air_date?.slice(0, 4);
+
+  const runtime =
+    type === "movie"
+      ? `${(media as TMDBMovieDetail).runtime} min`
+      : `${(media as TMDBTVDetail).number_of_seasons} seasons`;
   return (
     <div className="bg-deep border border-raised rounded-xl p-6 mb-6">
       <Link
@@ -16,29 +36,43 @@ const MovieHero = ({ movie }: MovieHeroProps) => {
         ← Back to discover
       </Link>
       <div className="flex gap-6">
-        <div className="w-36 h-52 bg-raised rounded-lg mb-4 flex items-center justify-center">
-          <Film className="w-12 h-12 text-muted" />
+        <div className="relative w-36 h-52 flex-shrink-0">
+          {media.poster_path ? (
+            <Image
+              src={getImageUrl(media.poster_path, "w300")}
+              alt={title}
+              fill
+              className="object-cover rounded-xl"
+            />
+          ) : (
+            <div className="w-full h-full bg-raised rounded-xl flex items-center justify-center">
+              <Film className="w-8 h-8 text-muted" />
+            </div>
+          )}
         </div>
         <div className="flex-1">
-          <p className="font-semibold text-primary text-xl">{movie?.title}</p>
-          <p className="text-muted text-sm">
-            {movie?.year} · {movie?.director} · {movie?.duration} min ·{" "}
-            {movie?.genre}
+          <h1 className="text-xl font-semibold text-primary mb-1">{title}</h1>
+          <p className="text-muted text-sm mb-3">
+            {[releaseYear, director, runtime].filter(Boolean).join(" · ")}
           </p>
-          <div className="flex gap-2 flex-wrap my-3">
-            {movie?.tags?.map((tag) => (
+          <div className="flex gap-2 flex-wrap mb-4">
+            {media.genres.map((genre) => (
               <span
-                key={tag}
+                key={genre.id}
                 className="text-xs px-3 py-1 rounded-full bg-raised border border-raised text-muted"
               >
-                {tag}
+                {genre.name}
               </span>
             ))}
           </div>
           <div className="flex items-center gap-4 my-4">
             <div>
-              <p className="text-2xl font-semibold text-gold">8.3</p>
-              <p className="text-xs text-muted">TMDB · 18.4k ratings</p>
+              <p className="text-2xl font-semibold text-gold">
+                {media.vote_average.toFixed(1)}
+              </p>
+              <p className="text-xs text-muted">
+                TMDB · {media.vote_count} ratings
+              </p>
             </div>
             <div className="w-px h-8 bg-raised" />
             <div>
