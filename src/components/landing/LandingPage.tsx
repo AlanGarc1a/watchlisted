@@ -3,12 +3,12 @@ import Features from "./Features";
 import Testimonials from "./Testimonials";
 import Footer from "../layout/footer";
 import SignUp from "./SignUp";
-import NavBar from "../layout/navbar";
+import LandingNavBar from "./LandingNavBar";
 
 const LandingPage = () => {
   return (
     <>
-      <NavBar />
+      <LandingNavBar />
       <Hero />
       <Features />
       <Testimonials />

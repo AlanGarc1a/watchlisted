@@ -6,6 +6,7 @@ import SectionHeader from "@/components/shared/SectionHeader";
 import FilterChips from "@/components/discover/FilterChips";
 import { getTrending, getNowPlaying, getTopRated } from "@/lib/tmdb";
 import { TMDBMovie } from "@/types";
+import AISearchBanner from "@/components/discover/AISearchBanner";
 
 type PageProps = {
   searchParams: Promise<{ filter?: string }>;
@@ -46,6 +47,7 @@ const Discover = async ({ searchParams }: PageProps) => {
   return (
     <>
       <AISearch />
+      <AISearchBanner />
       <TonightsPick />
       <FilterChips selected={filter} />
       <SectionHeader title={header} linkText="See all" />
