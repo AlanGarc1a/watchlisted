@@ -5,11 +5,18 @@ import ProfileStats from "@/components/profile/ProfileStats";
 import WatchlistPreview from "@/components/profile/WatchlistPreview";
 import { mockActivities } from "@/lib/mockData";
 import { auth } from "@/lib/auth";
+import { prisma } from "@/lib/prisma";
 
 const ProfilePage = async () => {
   const session = await auth();
 
   if (!session) return null;
+
+  const items = await prisma.watchlistItem.findMany({
+    where: { userId: session?.user.id },
+    include: { movie: true },
+    orderBy: { updatedAt: "desc" },
+  });
 
   return (
     <>
@@ -30,7 +37,7 @@ const ProfilePage = async () => {
         <GenreBreakdown />
         <ActivityFeed activities={mockActivities} />
       </div>
-      <WatchlistPreview />
+      <WatchlistPreview items={items} />
     </>
   );
 };

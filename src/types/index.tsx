@@ -93,3 +93,15 @@ export type WatchlistStatus =
   | "WATCHING"
   | "WATCHED"
   | "DROPPED";
+
+export type WatchlistItem = {
+  id: string;
+  status: string;
+  rating: number | null;
+  movie: {
+    tmdbId: number;
+    title: string;
+    posterPath: string | null;
+    genre: string | null;
+  };
+};
