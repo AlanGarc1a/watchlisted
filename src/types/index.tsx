@@ -105,3 +105,14 @@ export type WatchlistItem = {
     genre: string | null;
   };
 };
+
+export type Movie = {
+  id: number;
+  title: string;
+  year: number;
+  director: string;
+  genre: string;
+  duration: number | null;
+  rating: number;
+  tags: string[];
+};

@@ -1,4 +1,4 @@
-import { Movie, Activity } from "@/types";
+import type { Movie, Activity } from "@/types";
 export const mockMovies: Movie[] = [
   {
     id: 1,
