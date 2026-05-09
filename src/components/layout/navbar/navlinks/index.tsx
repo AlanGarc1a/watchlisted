@@ -23,7 +23,7 @@ const landingLinks: NavLink[] = [
 
 const dashboardLinks: NavLink[] = [
   { id: 1, href: "/discover", name: "Discover" },
-  { id: 2, href: "/my-list", name: "My list" },
+  { id: 2, href: "/watchlist", name: "My list" },
   { id: 3, href: "/friends", name: "Friends" },
   { id: 4, href: "/status", name: "Status" },
   { id: 5, href: "/profile", name: "My Profile" },

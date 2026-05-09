@@ -1,9 +1,12 @@
 import Link from "next/link";
-import MovieCard from "../movies/MovieCard";
-import { mockMovies } from "@/lib/mockData";
-import MovieCardGrid from "../movies/MovieGrid";
+import WatchlistCard from "../watchlist/WatchlistCard";
+import { WatchlistItem } from "@/types";
 
-const WatchlistPreview = () => {
+export type WatchlistPreviewProps = {
+  items: WatchlistItem[];
+};
+
+const WatchlistPreview = async ({ items }: WatchlistPreviewProps) => {
   return (
     <div className="bg-deep border border-raised p-4 mt-6 rounded-lg">
       <div className="flex items-center justify-between mb-4">
@@ -15,11 +18,17 @@ const WatchlistPreview = () => {
           See all
         </Link>
       </div>
-      <MovieCardGrid>
-        {mockMovies.slice(0, 4).map((movie) => (
-          <MovieCard key={movie.id} movie={movie} />
-        ))}
-      </MovieCardGrid>
+      {items.length === 0 ? (
+        <div className="text-center py-20">
+          <p className="text-muted text-sm">Your watchlist is empty.</p>
+        </div>
+      ) : (
+        <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
+          {items.map((item) => {
+            return <WatchlistCard key={item.id} item={item} />;
+          })}
+        </div>
+      )}
     </div>
   );
 };
