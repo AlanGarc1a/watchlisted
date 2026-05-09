@@ -56,7 +56,7 @@ const MediaDetailPage = async ({ params }: PageProps) => {
         type={type}
         director={director?.name ?? "Unknown"}
       />
-      <MovieAISummary />
+      <MovieAISummary media={media} type={type as "movie" | "tv"} />
       <MovieRating movie={movieForWatchlist} tmdbId={mediaId} />
       <MovieFriends />
     </>

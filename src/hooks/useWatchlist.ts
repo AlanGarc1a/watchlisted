@@ -13,18 +13,34 @@ export function useWatchlist(tmdbId: number) {
   const [item, setItem] = useState<WatchlistItem | null>(null);
   const [isLoading, setIsLoading] = useState(false);
 
-  // Check if movie is in watchlist on mount
+  const checkWatchlist = async () => {
+    const res = await fetch(`/api/watchlist?tmdbId=${tmdbId}`);
+    const data = await res.json();
+    setInWatchlist(data.inWatchlist);
+    setItem(data.item);
+  };
+
+  // Listen for updates from other hook instances
   useEffect(() => {
-    const check = async () => {
-      const res = await fetch(`/api/watchlist?tmdbId=${tmdbId}`);
-      const data = await res.json();
-      setInWatchlist(data.inWatchlist);
-      setItem(data.item);
+    checkWatchlist();
+
+    const handleUpdate = (e: Event) => {
+      const detail = (e as CustomEvent).detail;
+      if (detail.tmdbId === tmdbId) {
+        checkWatchlist();
+      }
     };
-    check();
+
+    window.addEventListener("watchlist-updated", handleUpdate);
+    return () => window.removeEventListener("watchlist-updated", handleUpdate);
   }, [tmdbId]);
 
-  // Add to watchlist
+  const broadcastUpdate = () => {
+    window.dispatchEvent(
+      new CustomEvent("watchlist-updated", { detail: { tmdbId } }),
+    );
+  };
+
   const addToWatchlist = async (movie: TMDBMovie) => {
     setIsLoading(true);
     try {
@@ -41,12 +57,12 @@ export function useWatchlist(tmdbId: number) {
       const data = await res.json();
       setInWatchlist(true);
       setItem(data);
+      broadcastUpdate();
     } finally {
       setIsLoading(false);
     }
   };
 
-  // Update status
   const updateStatus = async (tmdbId: number, status: WatchlistStatus) => {
     setIsLoading(true);
     try {
@@ -57,12 +73,12 @@ export function useWatchlist(tmdbId: number) {
       });
       const data = await res.json();
       setItem(data);
+      broadcastUpdate();
     } finally {
       setIsLoading(false);
     }
   };
 
-  // Update rating
   const updateRating = async (tmdbId: number, rating: number) => {
     setIsLoading(true);
     try {
@@ -73,12 +89,12 @@ export function useWatchlist(tmdbId: number) {
       });
       const data = await res.json();
       setItem(data);
+      broadcastUpdate();
     } finally {
       setIsLoading(false);
     }
   };
 
-  // Remove from watchlist
   const removeFromWatchlist = async (tmdbId: number) => {
     setIsLoading(true);
     try {
@@ -89,6 +105,7 @@ export function useWatchlist(tmdbId: number) {
       });
       setInWatchlist(false);
       setItem(null);
+      broadcastUpdate();
     } finally {
       setIsLoading(false);
     }
