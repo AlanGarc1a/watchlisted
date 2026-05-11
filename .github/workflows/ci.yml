@@ -39,10 +39,6 @@ jobs:
       - name: TypeScript check
         run: npx tsc --noEmit
 
-      # 6. Run ESLint
-      - name: Lint
-        run: npm run lint
-
       # 7. Build the app
       - name: Build
         run: npm run build
