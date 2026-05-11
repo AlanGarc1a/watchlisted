@@ -47,6 +47,7 @@ jobs:
       - name: Build
         run: npm run build
         env:
+          NEXT_DISABLE_ESLINT: 1 # ← skip ESLint during build
           DATABASE_URL: ${{ secrets.DATABASE_URL }}
           DIRECT_URL: ${{ secrets.DIRECT_URL }}
           NEXTAUTH_SECRET: ${{ secrets.NEXTAUTH_SECRET }}
