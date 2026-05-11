@@ -53,4 +53,4 @@ jobs:
           GOOGLE_CLIENT_SECRET: ${{ secrets.GOOGLE_CLIENT_SECRET }}
           TMDB_API_KEY: ${{ secrets.TMDB_API_KEY }}
           TMDB_BASE_URL: ${{ secrets.TMDB_BASE_URL }}
-          ANTHROPIC_API_KEY: ${{ secrets.ANTHROPIC_API_KEY }
+          ANTHROPIC_API_KEY: ${{ secrets.ANTHROPIC_API_KEY }}
