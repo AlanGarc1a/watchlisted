@@ -4,7 +4,7 @@ name: CI
 on:
   push:
     branches: [master]
-  pull_request
+  pull_request:
     branches: [master]
 
 jobs:
@@ -13,34 +13,34 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-    # 1. Pull code into Github Actions 
+      # 1. Pull code into Github Actions
       - name: Checkout code
         uses: actions/checkout@v4
 
-    # 2. Install Node.js
+      # 2. Install Node.js
       - name: Setup Node.js
         uses: actions/setup-node@v4
         with:
           node-version: 18
-          cache: 'npm'
+          cache: "npm"
 
-    # 3 Install dependencies
+      # 3 Install dependencies
       - name: Install dependencies
         run: npm install --legacy-peer-deps
-    
-    # 4 Generate Prisma client
+
+      # 4 Generate Prisma client
       - name: Generate Prisma client
         run: npx prisma generate
 
-    # 5. Check TypeScript types
+      # 5. Check TypeScript types
       - name: TypeScript check
         run: npx tsc --noEmit
 
-    # 6. Run ESLint
+      # 6. Run ESLint
       - name: Lint
         run: npm run lint
 
-    # 7. Build the app
+      # 7. Build the app
       - name: Build
         run: npm run build
         env:
